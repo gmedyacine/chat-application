@@ -1,0 +1,9 @@
+# Logs
+/var/cache/*
+!var/logs/.gitkeep
+
+# Parameters
+/config/parameters.php
+
+#IDE
+/.idea
