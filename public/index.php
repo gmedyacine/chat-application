@@ -1,13 +1,20 @@
 <?php
-    define('PUBLIC', dirname(__FILE__));
-    define('ROOT', dirname(dirname(__FILE__)));
-    define('DS', DIRECTORY_SEPARATOR);
-    define('APP', ROOT.DS.'app');
-    define('BASE_URL', dirname(dirname($_SERVER['SCRIPT_NAME'])));
-?>
+define('ROOT', dirname(__DIR__));
+define("APPPATH", ROOT . '/App');
 
-<pre>
-    <?php
-        echo BASE_URL;
-    ?>
-</pre>
+require APPPATH . '/App.php';
+
+src\App::load();
+
+// router en fonction les paramètres de l'url
+if (isset($_GET['p'])) {
+    $page = $_GET['p'];
+} else {
+    $page = 'default.login';
+}
+
+$page = explode('.', $page);
+$controller = '\src\controller\\' . ucfirst($page[0]) . 'Controller';
+$action = $page[1];
+$controller = new $controller();
+$controller->$action();
