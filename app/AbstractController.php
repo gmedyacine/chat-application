@@ -1,15 +1,9 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: walid
- * Date: 11/20/2018
- * Time: 11:19 PM
- */
 
 namespace app;
 
 
-class AbstractController
+abstract class AbstractController
 {
     protected function render($view, $parameters = [])
     {
