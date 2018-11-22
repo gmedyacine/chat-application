@@ -119,4 +119,17 @@ class ChatController extends HomeController
         echo json_encode($connectedUsers);
     }
 
+    /**
+     * Pour déconnecter l'utilisateur en cours
+     */
+    public function logout(): void
+    {
+        $app = Home::getInstance();
+        $chatSessionRepository = new ChatSessionRepository($app->getDb());
+        $chatSessionManager = new ChatSessionManager($app->getDb());
+        $chatSession = $chatSessionRepository->findByUserId($_SESSION['authenticated']);
+        $chatSessionManager->remove($chatSession->getId());
+        unset($_SESSION['authenticated']);
+        header("Location: /?p=default.login");
+    }
 }
