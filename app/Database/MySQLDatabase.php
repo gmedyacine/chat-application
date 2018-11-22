@@ -79,7 +79,7 @@ class MySQLDatabase implements Database
      * @param bool $one
      * @return array|bool|mixed
      */
-    public function prepare($statement, $attributes, $one = false): array
+    public function prepare($statement, $attributes, $one = false)
     {
         $req = $this->getPDO()->prepare($statement);
         $res = $req->execute($attributes);
