@@ -5,6 +5,8 @@
     <title>Application de chat</title>
 </head>
 <body>
-<?= $content; ?>
+<?php
+    $content;
+?>
 </body>
 </html>
