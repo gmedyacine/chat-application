@@ -1,12 +1,23 @@
 <?php
+
+namespace src\Controller;
+
 /**
- * Created by PhpStorm.
- * User: walid
- * Date: 11/21/2018
- * Time: 12:35 AM
+ * Class HomeController
+ * @package src\Controller
  */
-
-class HomeController
+class HomeController extends \app\AbstractController
 {
+    /**
+     * @var string
+     */
+    protected $template = 'default';
 
+    /**
+     * HomeController constructor.
+     */
+    public function __construct()
+    {
+        $this->viewPath = ROOT . '/public/';
+    }
 }
