@@ -91,4 +91,23 @@ class DefaultController extends HomeController
         ]);
     }
 
+    /**
+     * @param $user
+     * @param $password
+     * @return string
+     */
+    private function checkIds($user, $password): string
+    {
+        if ($user) {
+            if (password_verify($password, $user->getPassword())) {
+                $_SESSION['authenticated'] = $user->getId();
+                header("Location: /?p=chat.index");
+            } else {
+                $loginError = 'Mot de passe incorrect';
+            }
+        } else {
+            $loginError = 'Identifiants incorrect';
+        }
+        return $loginError;
+    }
 }
