@@ -1,9 +1,15 @@
 <?php
+
+namespace src\Controller;
+
+use src\Home;
+use src\Entity\User;
+use src\Manager\UserManager;
+use src\Repository\UserRepository;
+
 /**
- * Created by PhpStorm.
- * User: walid
- * Date: 11/21/2018
- * Time: 12:40 AM
+ * Class DefaultController
+ * @package src\Controller
  */
 
 class LoginController
