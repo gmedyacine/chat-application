@@ -2,9 +2,9 @@
 define('ROOT', dirname(__DIR__));
 define("APPPATH", ROOT . '/src');
 
-require APPPATH . '/App.php';
+require APPPATH . '/Home.php';
 
-src\App::load();
+src\Home::load();
 
 // router en fonction les paramètres de l'url
 if (isset($_GET['p'])) {
