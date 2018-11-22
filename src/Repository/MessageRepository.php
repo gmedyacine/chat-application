@@ -53,6 +53,18 @@ class MessageRepository
     }
 
     /**
+     * Pour récupérer l'id d'un user pour par la suite récupérer l'objet user
+     * @param $id
+     * @return int
+     */
+    public function getUserId($id): int
+    {
+        $statement = 'SELECT user_id FROM message where id= ?';
+        $userId = $this->db->prepare($statement, [$id], false);
+        return $userId[0]['user_id'];
+    }
+
+    /**
      * @return MySQLDatabase
      */
     public function getDb(): MySQLDatabase

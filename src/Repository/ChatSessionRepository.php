@@ -29,7 +29,7 @@ class ChatSessionRepository
      * @param $userId
      * @return bool|chatSession
      */
-    public function findByUserId($userId): chatSession
+    public function findByUserId($userId)
     {
         $statement = 'SELECT * FROM chat_session WHERE user_id = ?';
         $data = $this->db->prepare($statement, [$userId], true);
@@ -52,5 +52,17 @@ class ChatSessionRepository
             $chatSessions[] = new ChatSession($data);
         }
         return $chatSessions;
+    }
+
+    /**
+     * Pour récupérer l'id d'un user pour par la suite récupérer l'objet user
+     * @param $id
+     * @return int
+     */
+    public function getUserId($id): int
+    {
+        $statement = 'SELECT user_id FROM chat_session where id= ?';
+        $userId = $this->db->prepare($statement, [$id], false);
+        return $userId[0]['user_id'];
     }
 }

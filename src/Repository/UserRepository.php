@@ -41,7 +41,7 @@ class UserRepository
      * @param $username
      * @return bool|User
      */
-    public function findByUsername($username): User
+    public function findByUsername($username)
     {
         $statement = 'SELECT * FROM user WHERE username = ?';
         $data = $this->db->prepare($statement, [$username], true);
