@@ -2,7 +2,7 @@
 
     return array(
         "host" => "localhost",
-        "database" => "chat",
+        "database" => "chat_application",
         "user" => "root",
         "password" => ""
     );
