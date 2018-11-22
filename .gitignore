@@ -3,7 +3,7 @@
 !var/logs/.gitkeep
 
 # Parameters
-/config/parameters.php
+/config/config.php
 
 #IDE
 /.idea
