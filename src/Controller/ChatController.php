@@ -24,7 +24,7 @@ class ChatController extends HomeController
     public function __construct()
     {
         parent::__construct();
-        if (!isset($_SESSION['auth'])) {
+        if (!isset($_SESSION['authenticated'])) {
             header("Location: /?p=default.login");
             die();
         }
@@ -39,10 +39,14 @@ class ChatController extends HomeController
             $app = Home::getInstance();
             $messageManager = new MessageManager($app->getDb());
 
-            $message = new Message([
-                "content" => $_POST['content'],
-                "userId" => $_SESSION['auth']
-            ]);
+            $userRepository = new UserRepository($app->getDb());
+            $user = $userRepository->find($_SESSION['authenticated']);
+
+            $message = new Message();
+
+            $message->setContent($_POST['content'])
+                ->setUser($user)
+                ->setCreatedAt((new \DateTime())->format('Y-m-d H:i:s'));
 
             $messageManager->add($message);
 
@@ -63,10 +67,11 @@ class ChatController extends HomeController
 
         $messages = $messageRepository->findAll();
         foreach ($messages as $message) {
-            $user = $userRepository->find($message->getUser()->getId());
+            $user = $userRepository->find($messageRepository->getUserId($message->getId()));
+            $message->setUser($user);
             $response[$message->getId()]['content'] = $message->getContent();
             $response[$message->getId()]['username'] = $user->getUsername();
-            $response[$message->getId()]['createdAt'] = $message->getDatetime();
+            $response[$message->getId()]['createdAt'] = $message->getCreatedAt();
         }
 
         echo json_encode($response);
@@ -87,13 +92,16 @@ class ChatController extends HomeController
 
         foreach ($chatSessions as $chatSession) {
 
-            if ($chatSession->getUser()->getId() == $_SESSION['authenticated']) {
+            $userId = $chatSessionsRepository->getUserId($chatSession->getId());
+            $user = $userRepository->find($userId);
+            $chatSession->setUser($user);
+            if ($user->getId() == $_SESSION['authenticated']) {
                 $chatSessionManager->update($chatSession);
                 $new = false;
             }
 
             $now = new \DateTime();
-            $updatedAt = new \DateTime($chatSession->getDatetime());
+            $updatedAt = new \DateTime($chatSession->getCreatedAt());
             $interval = $updatedAt->diff($now);
 
             if ($interval->format('%y') > 0
@@ -104,16 +112,21 @@ class ChatController extends HomeController
             ) {
                 $chatSessionManager->remove($chatSession->getId());
             } else {
-                $connectedUsers[] = $userRepository->find($chatSession->getUser())->getId();
+                $connectedUsers[] = $userRepository->find($chatSession->getUser()->getId())->getUsername();
             }
         }
 
         if ($new) {
-            $newChatSession = new ChatSession([
-                "userId" => $_SESSION['authenticated']
-            ]);
+            $newChatSession = new ChatSession();
+
+            $userRepository = new UserRepository($app->getDb());
+            $user = $userRepository->find($_SESSION['authenticated']);
+
+            $newChatSession->setUser($user);
+            $newChatSession->setCreatedAt(new \DateTime());
+
             $chatSessionManager->add($newChatSession);
-            $connectedUsers[] = $userRepository->find($newChatSession->getUser()->getId())->getName();
+            $connectedUsers[] = $userRepository->find($newChatSession->getUser()->getId())->getUsername();
         }
 
         echo json_encode($connectedUsers);
