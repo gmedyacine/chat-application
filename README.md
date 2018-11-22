@@ -29,7 +29,7 @@ Lancez l'import de la base de données
 Example plus tard
 ```
 
-Un jeu de donnée est fournit avec l'import
+Vous pourrez cérer un user à partir de l'écran d'accueil
 
 ## Lancement d'un test unitaire
 
@@ -53,16 +53,28 @@ Explication d'un TF
 
 ## Déploiement
 
-Expliquer comment ça se passe
+A tester en local, créer un vhosts pointant vers le dossier public.
 
-## Built With
+Example avec Wamp 3
+
+```
+<VirtualHost *:80>
+    ServerAdmin votremail@email.com
+    ServerName chat.local
+    DocumentRoot "${INSTALL_DIR}/www/chat-application/public"
+</VirtualHost>
+```
+
+N'oubliez pas de modifier votre fichier hosts.
+
+## Construit avec
 
 * [PHPStorm](https://www.jetbrains.com/phpstorm/) - Mon IDE préféré
-* [Composer](https://getcomposer.org/) - Gestion des dépendances
+* [PHP7]
 
 ## Contributions
 
-Pas encore de  [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426)
+Pas encore.
 
 ## Versioning
 
