@@ -31,8 +31,7 @@ class MessageManager
      */
     public function add(Message $message): void
     {
-        $statement = 'INSERT INTO message(content, createdAt, user_id) VALUES(?, ?, ?)';
-        $date = (new \DateTime())->format('Y-m-d H:i:s');
-        $this->db->prepare($statement, [$message->getContent(), $date, $message->getUser()->getId()], true);
+        $statement = 'INSERT INTO message(content, created_at, user_id) VALUES(?, ?, ?)';
+        $this->db->prepare($statement, [$message->getContent(), $message->getCreatedAt(), $message->getUser()->getId()], true);
     }
 }

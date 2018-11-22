@@ -31,7 +31,7 @@ class ChatSessionManager
      */
     public function add(ChatSession $chatSession): void
     {
-        $statement = 'INSERT INTO chat_session(user_id, createdAt) VALUES(?, ?)';
+        $statement = 'INSERT INTO chat_session(user_id, created_at) VALUES(?, ?)';
         $date = (new \DateTime())->format('Y-m-d H:i:s');
         $this->db->prepare($statement, [$chatSession->getUser()->getId(), $date], true);
     }
@@ -41,7 +41,7 @@ class ChatSessionManager
      */
     public function update(ChatSession $chatSession): void
     {
-        $statement = 'UPDATE chat_session SET createdAt = ? WHERE user_id = ?';
+        $statement = 'UPDATE chat_session SET created_at = ? WHERE user_id = ?';
         $date = (new \DateTime())->format('Y-m-d H:i:s');
         $this->db->prepare($statement, [$date, $chatSession->getUser()->getId()], true);
     }
