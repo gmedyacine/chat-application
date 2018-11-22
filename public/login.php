@@ -1,12 +1,31 @@
+<h1>Connexion</h1>
+
 <?php
-/**
- * Created by PhpStorm.
- * User: walid
- * Date: 11/21/2018
- * Time: 12:25 AM
- */
+    if (isset($loginError)):
+?>
+<p class="error"><?= $loginError; ?>
+<?php
+    endif
+?>
 
-class login
-{
+<form method="post">
+    <input type="text" name="username" required="true">
+    <input type="password" name="password" required="true">
+    <input type="submit" name="login" value="Se connecter">
+</form>
 
-}
+<h2>S'enregistrer</h2>
+<?php if (isset($registrationError)): ?>
+<p class="error">
+<?php
+        $registrationError;
+?>
+<?php
+    endif
+?>
+<form method="post">
+    <input type="text" name="username" required="true">
+    <input type="password" name="password" required="true">
+    <input type="password" name="password2" required="true">
+    <input type="submit" name="register" value="Inscription">
+</form>
