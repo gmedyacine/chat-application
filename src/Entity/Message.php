@@ -50,7 +50,7 @@ class Message extends Entity
     /**
      * @return \src\Entity\User
      */
-    public function getUser(): User
+    public function getUser()
     {
         return $this->user;
     }
@@ -69,7 +69,7 @@ class Message extends Entity
     /**
      * @return \DateTime
      */
-    public function getCreatedAt(): \DateTime
+    public function getCreatedAt()
     {
         return $this->createdAt;
     }

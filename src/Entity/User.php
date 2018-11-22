@@ -44,7 +44,7 @@ class User extends Entity
     /**
      * @return string
      */
-    public function getUsername(): string
+    public function getUsername()
     {
         return $this->username;
     }
