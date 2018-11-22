@@ -1,7 +1,10 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: walid
- * Date: 11/21/2018
- * Time: 12:32 AM
- */
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Application de chat</title>
+</head>
+<body>
+<?= $content; ?>
+</body>
+</html>
