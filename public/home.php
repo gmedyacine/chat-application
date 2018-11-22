@@ -33,7 +33,7 @@
                 success: function (data) {
                     $("#messages").empty();
                     for (message in data) {
-                        $("#messages").append('<li><strong>' + data[message].user + '</strong> <i>[' + data[message].createdAt + ']</i> :' + data[message].content + '</li>');
+                        $("#messages").append('<li><strong>' + data[message].username + '</strong> <i>[' + data[message].createdAt + ']</i> :' + data[message].content + '</li>');
                     }
                 }
             });
