@@ -8,10 +8,10 @@ use src\Manager\UserManager;
 use src\Repository\UserRepository;
 
 /**
- * Class DefaultController
+ * Class LoginController
  * @package src\Controller
  */
-class DefaultController extends HomeController
+class LoginController extends HomeController
 {
     /**
      *
