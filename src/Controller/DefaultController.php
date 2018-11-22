@@ -8,10 +8,10 @@ use src\Manager\UserManager;
 use src\Repository\UserRepository;
 
 /**
- * Class LoginController
+ * Class DefaultController
  * @package src\Controller
  */
-class LoginController extends HomeController
+class DefaultController extends HomeController
 {
     /**
      *
@@ -53,7 +53,7 @@ class LoginController extends HomeController
                     if ($_POST['password'] == $_POST['password2']) {
                         // On encrypte le mots de passe
                         $user = new User([
-                            "name" => $_POST['username'],
+                            "username" => $_POST['username'],
                             "password" => password_hash($_POST['password'], PASSWORD_BCRYPT)
                         ]);
 
