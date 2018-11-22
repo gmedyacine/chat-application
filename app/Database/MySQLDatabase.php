@@ -108,4 +108,3 @@ class MySQLDatabase implements Database
         return $this->getPDO()->lastInsertId();
     }
 }
- 
