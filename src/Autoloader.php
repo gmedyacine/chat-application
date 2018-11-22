@@ -2,6 +2,10 @@
 
 namespace src;
 
+/**
+ * Class AutoLoader
+ * @package src
+ */
 class AutoLoader
 {
     /**
