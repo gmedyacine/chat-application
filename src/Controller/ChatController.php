@@ -44,7 +44,9 @@ class ChatController extends HomeController
 
             $message = new Message();
 
-            $message->setContent($_POST['content'])
+            $content = htmlspecialchars($_POST['content'], ENT_QUOTES);
+
+            $message->setContent($content)
                 ->setUser($user)
                 ->setCreatedAt((new \DateTime())->format('Y-m-d H:i:s'));
 
