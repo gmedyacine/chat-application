@@ -23,6 +23,9 @@ endif
         <input type="password" class="form-control" name="password" required id="password"
                placeholder="Votre mots de passe">
     </div>
+    <div class="form-group">
+        <input type="hidden" class="form-control" name="token" value="<?php echo(\src\Security\Token::generate()); ?>">
+    </div>
     <button type="submit" name="login" class="btn btn-primary">Se connecter</button>
 </form>
 
