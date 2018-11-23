@@ -23,10 +23,10 @@ Commencez par cloner le projet en local chez vous.
 git clone git@github.com:mWalidMahmoud/chat-application.git
 ```
 
-Lancez l'import de la base de données
+Lancez l'import de la base de données en exécutant le fichier suivant se trouvant à la racine
 
 ```
-Example plus tard
+chat_application.sql
 ```
 
 Vous pourrez cérer un user à partir de l'écran d'accueil
@@ -97,3 +97,4 @@ Bof
 * Un système de routage simplifié, à amélorier pour plus tard en rajoutant les classes Request, Router et Dispatcher.
 * TODO aussi, réecriture des url et utilisatation des .htacess
 * Sécurité: CSRF, XSS, protection des mots de passe, PDO Binding (prepared) pour les injections
+* Vous pouvez créer un nouvel utilisateur
