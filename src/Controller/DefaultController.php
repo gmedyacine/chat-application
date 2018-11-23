@@ -6,6 +6,7 @@ use src\Home;
 use src\Entity\User;
 use src\Manager\UserManager;
 use src\Repository\UserRepository;
+use src\Security\Token;
 
 /**
  * Class DefaultController
@@ -37,11 +38,12 @@ class DefaultController extends HomeController
             if (isset($_POST['login'])) {
                 $username = isset($_POST['username']) ? $_POST['username'] : NULL;
                 $password = isset($_POST['password']) ? $_POST['password'] : NULL;
+                $token = isset($_POST['token']) ? $_POST['token'] : NULL;
 
                 $user = $userRepository->findByUsername($username);
 
                 // On vérifie les identifiants
-                $loginError = $this->checkIds($user, $password);
+                $loginError = $this->checkIds($user, $password, $token);
             }
 
             // Si c'est une nouvelle inscription
@@ -96,12 +98,14 @@ class DefaultController extends HomeController
      * @param $password
      * @return string
      */
-    private function checkIds($user, $password): string
+    private function checkIds($user, $password, $token): string
     {
         if ($user) {
             if (password_verify($password, $user->getPassword())) {
-                $_SESSION['authenticated'] = $user->getId();
-                header("Location: /?p=chat.index");
+                if (Token::check($token)){
+                    $_SESSION['authenticated'] = $user->getId();
+                    header("Location: /?p=chat.index");
+                }
             } else {
                 $loginError = 'Mot de passe incorrect';
             }
