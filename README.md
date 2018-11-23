@@ -91,6 +91,9 @@ Bof
 
 ## A savoir
 
-* Hat tip to anyone whose code was used
-* Inspiration
-* etc
+* A peu près 4h on était consacrées (Un peu plus peut-être)
+* Niveau graphique ce n'est pas top, mais y a du bootstrap
+* Je me suis concentré sur l'aspet MVC, avec une bonne spéraration des propos
+* Un système de routage simplifié, à amélorier pour plus tard en rajoutant les classes Request, Router et Dispatcher.
+* TODO aussi, réecriture des url et utilisatation des .htacess
+* Sécurité: CSRF, XSS, protection des mots de passe, PDO Binding (prepared) pour les injections
