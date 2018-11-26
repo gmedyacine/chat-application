@@ -1,8 +1,8 @@
 <?php
 
     return array(
-        "host" => "localhost",
-        "database" => "chat",
-        "user" => "root",
-        "password" => ""
+        "host" => "votre-host",
+        "database" => "votre-db",
+        "user" => "votre-user",
+        "password" => "votre-password"
     );
